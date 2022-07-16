@@ -9,11 +9,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 
@@ -62,17 +60,14 @@ public class ShopTest {
                 .stream()
                 .map(el -> el.findElements(By.xpath("./td")).get(1).getText())
                 .collect(Collectors.toList());
-
         System.out.println(actualPhoneList);
 
         assertThat(actualPhoneList).containsExactlyInAnyOrder(phoneName);
 
         webDriver.findElement(By.xpath("//button[.='Checkout']")).click();
         webDriverWait.until(ExpectedConditions.textToBe(By.xpath("//h1[text()='Checkout Information']/../table//tbody/tr/td[1]"), phoneName));
-
         webDriver.findElement(By.xpath("//button[.='Confirm']")).click();
         webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[.='OK']"))).click();
-
     }
 
     @Test
@@ -91,7 +86,6 @@ public class ShopTest {
                 isEqualTo(huaweiName);
         webDriver.findElement(By.xpath("//button[.='Add to cart']")).click();
         webDriver.findElement(By.xpath("//a[.='Back to catalog']")).click();
-
         webDriver.findElement(By.xpath("//a[@href='/product/62cc7315950643acfd99c0c5']/div/div/span")).click();
         assertThat(webDriver.findElement(By.cssSelector(".product-details-container h1")).getText()).
                 as("Должна открыться страница с телефоном " + lgName).
@@ -128,7 +122,6 @@ public class ShopTest {
                 .allMatch(el -> el.contains("Samsung"));
         System.out.println(PhoneList);
         assertThat(PhoneList).isTrue();
-
     }
 
     @Test

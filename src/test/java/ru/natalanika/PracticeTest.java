@@ -9,11 +9,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 
@@ -83,6 +81,5 @@ public class PracticeTest {
         webDriver.findElement(By.xpath("//input[@id='passwd']")).sendKeys("123");
         webDriver.findElement(By.xpath("//button[@id='SubmitLogin']")).click();
         webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//p[text()='There is 1 error']")));
-
     }
 }
