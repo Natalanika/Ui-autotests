@@ -31,13 +31,17 @@ public class PracticeTest {
         webDriver.quit();
     }
 
-    @Test
-    public void InStockTest() {
+    public void login() {
         webDriver.get("http://automationpractice.com/index.php");
         webDriver.findElement(By.xpath("//a[@class='login']")).click();
         webDriver.findElement(By.xpath("//input[@id='email']")).sendKeys("gaponova-lanika@yandex.ru");
         webDriver.findElement(By.xpath("//input[@id='passwd']")).sendKeys("12345");
         webDriver.findElement(By.xpath("//button[@id='SubmitLogin']")).click();
+    }
+
+    @Test
+    public void InStockTest() {
+       login();
         webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//a[@class='logout']")));
         webDriver.findElement(By.xpath("(//a[.='Dresses'])[2]")).click();
         webDriver.findElement(By.xpath("(//a[.='Dresses'])[2]")).click();
@@ -50,12 +54,7 @@ public class PracticeTest {
     @Test
     public void BuyDress()  {
         String succesText = "Your order on My Store is complete.";
-        webDriver.get("http://automationpractice.com/index.php");
-        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//a[@class='login']"))).click();
-        //webDriver.findElement(By.xpath("//a[@class='login']")).click();
-        webDriver.findElement(By.xpath("//input[@id='email']")).sendKeys("gaponova-lanika@yandex.ru");
-        webDriver.findElement(By.xpath("//input[@id='passwd']")).sendKeys("12345");
-        webDriver.findElement(By.xpath("//button[@id='SubmitLogin']")).click();
+        login();
         webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//a[@class='logout']")));
         webDriver.findElement(By.xpath("(//a[.='Dresses'])[2]")).click();
         webDriver.findElement(By.xpath("(//a[.='Dresses'])[2]")).click();
