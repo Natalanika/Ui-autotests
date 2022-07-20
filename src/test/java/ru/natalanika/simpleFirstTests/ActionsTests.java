@@ -1,6 +1,5 @@
-package ru.natalanika;
+package ru.natalanika.simpleFirstTests;
 
-import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -10,8 +9,6 @@ import java.time.Duration;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.shouldHaveThrown;
-import static org.assertj.core.api.InstanceOfAssertFactories.DURATION;
 
 public class ActionsTests extends BaseTests{
     @Test

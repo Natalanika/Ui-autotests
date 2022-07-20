@@ -1,4 +1,4 @@
-package ru.natalanika;
+package ru.natalanika.pageObject;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.AfterEach;
@@ -14,20 +14,10 @@ public class BaseTests {
    protected WebDriver webDriver;
     protected WebDriverWait webDriverWait;
 
-    protected void login () {
-        webDriver.get("http://localhost:3000/");
-        webDriver.findElement(By.xpath("//button[.='LOGIN']")).click();
-        webDriver.findElement(By.xpath("//input[contains(@id, 'Username')]")).sendKeys("admin");
-        webDriver.findElement(By.xpath("//input[contains(@id, 'Password')]")).sendKeys("12345");
-        webDriver.findElement(By.xpath("//button[.='Submit']")).click();
-        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='LOGOUT']")));
-    }
-
     @BeforeEach
     void setUp() {
         webDriver = WebDriverManager.chromedriver().create();
         webDriver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-        webDriverWait = new WebDriverWait(webDriver, 5);
     }
 
     @AfterEach

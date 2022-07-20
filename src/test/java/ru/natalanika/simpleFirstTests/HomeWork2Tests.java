@@ -1,9 +1,10 @@
-package ru.natalanika;
+package ru.natalanika.simpleFirstTests;
 
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.html5.WebStorage;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
@@ -54,7 +55,14 @@ public class HomeWork2Tests extends BaseTests {
         webDriver.findElement(By.xpath("//input[@id='file-upload']"))
                 .sendKeys("/Users/natali/Documents/Картинка.jpeg");
         Thread.sleep(5000);
+    }
 
+    @Test
+    void setTokenTest() throws InterruptedException {
+        webDriver.get("https://qa-mesto.praktikum-services.ru/");
+        ((WebStorage) webDriver).getLocalStorage().setItem("jwt", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmQ4MDliZmQzYjg2YTAwM2Q2N2NhNTgiLCJpYXQiOjE2NTgzMjU0MzksImV4cCI6MTY1ODkzMDIzOX0.UtJWWJbkpHSFn_za__KwN4nAin2f2U9cSPnCTI_5KVY");
+        webDriver.navigate().refresh();
+        Thread.sleep(5000);
     }
 }
 
