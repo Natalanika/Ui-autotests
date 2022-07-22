@@ -1,5 +1,6 @@
 package ru.natalanika.pageObject.MobileShopTests.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -19,6 +20,7 @@ public class PhonesPage extends BasePage {
         super(webDriver);
     }
 
+    @Step("Выбрать телефон {phoneName}")
     public OnePhonePage selectPhone(String phoneName) {
     List<WebElement> phones = webDriver.findElements(phoneOnPage);
         phones.stream()
@@ -29,12 +31,14 @@ public class PhonesPage extends BasePage {
         return new OnePhonePage(webDriver);
     }
 
+    @Step("Выбрать бренд Samsung")
     public PhonesPage selectSamsungBrand () {
         brand.click();
         webDriver.findElement(By.xpath("//input[@nestedlevel = '1'][@value='samsung']")).click();
         return new PhonesPage(webDriver);
     }
 
+    @Step("Проверить, что странице остались лишь телефоны выбранного бренда")
     public boolean arePhonesOfSamsung () {
         boolean hasPhoneList = webDriver.findElements(By.xpath("//div[@class='content-left']/h3"))
                 .stream()

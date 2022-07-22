@@ -1,7 +1,11 @@
 package ru.natalanika.pageObject.WomenShopTests;
 
-
+import io.qameta.allure.Description;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import ru.natalanika.pageObject.BaseTests;
@@ -10,17 +14,20 @@ import ru.natalanika.pageObject.WomenShopTests.pages.MainPage;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-
+@DisplayName("Тестирование магазина женских платьев")
 public class WomenShopTest extends BaseTests {
     String login = "gaponova-lanika@yandex.ru";
     String password = "12345";
-    String invalidPassword = "123";
 
     @BeforeEach
     void getPage() {
         webDriver.get("http://automationpractice.com/index.php");
     }
 
+
+    @Description("Проверяем, отображаются ли платья в наличии")
+    @Severity(SeverityLevel.CRITICAL)
+    @DisplayName("Отображение наличия товара в магазине")
     @Test
     public void InStockTest() {
 
@@ -33,6 +40,10 @@ public class WomenShopTest extends BaseTests {
         assertThat(myCheck).isTrue();
     }
 
+    @Feature("Покупка")
+    @Description("Покупаем случайное платье")
+    @Severity(SeverityLevel.BLOCKER)
+    @DisplayName("Покупка одного платья")
     @Test
     public void BuyDress() {
         String successText = "Your order on My Store is complete.";
@@ -50,14 +61,22 @@ public class WomenShopTest extends BaseTests {
         assertThat(myCheck).isEqualTo(successText);
     }
 
+
+    @Description("Вводим неверный пароль")
+    @Severity(SeverityLevel.CRITICAL)
+    @DisplayName("Авторизация под неверными данными")
     @Test
     public void WrongPasswordTest() {
+        String invalidPassword = "123";
 
         new MainPage(webDriver)
                 .getConstantPart()
                 .loginInvalid(login, invalidPassword);
     }
 
+    @Description("Меняем фамилию в аккаунте")
+    @Severity(SeverityLevel.MINOR)
+    @DisplayName("Редактирование персональных данных в аккаунте")
     @Test
     public void changePersonalInfo() {
         String lastName = "MyNewLastName";
@@ -75,6 +94,10 @@ public class WomenShopTest extends BaseTests {
 
     }
 
+    @Feature("Покупка")
+    @Description("Выбираем размер платья")
+    @Severity(SeverityLevel.CRITICAL)
+    @DisplayName("Выбор размера товара")
     @Test
     public void selectSizeOfDress() {
         String size = "M";

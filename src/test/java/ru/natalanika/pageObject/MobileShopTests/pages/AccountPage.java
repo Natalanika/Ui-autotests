@@ -1,5 +1,6 @@
 package ru.natalanika.pageObject.MobileShopTests.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,6 +14,7 @@ public class AccountPage extends BasePage {
         super(webDriver);
     }
 
+    @Step("Посмотреть историю заказов")
     public List<String> getOrderHistory () {
         List<String> orderHistory = webDriver.findElements(By.xpath("//tbody/tr"))
                 .stream()

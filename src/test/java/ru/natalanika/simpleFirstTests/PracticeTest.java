@@ -9,6 +9,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
@@ -22,8 +24,7 @@ public class PracticeTest {
     @BeforeEach
     void setUp() {
         webDriver = WebDriverManager.chromedriver().create();
-        webDriver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-        webDriverWait = new WebDriverWait(webDriver, 3);
+        webDriverWait = new WebDriverWait(webDriver, Duration.ofSeconds(3));
     }
 
     @AfterEach

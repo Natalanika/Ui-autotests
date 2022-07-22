@@ -1,5 +1,6 @@
 package ru.natalanika.pageObject.WomenShopTests.pages;
 
+import io.qameta.allure.Step;
 import lombok.Getter;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -29,14 +30,15 @@ public class CartPage extends BasePage {
     @FindBy (xpath = "//p[@class='alert alert-success']")
     private WebElement messageAboutSuccess;
 
+    @Step("Проверить, что корзина не пустая")
     public CartPage checkCartIsNotEmpty () {
         List<WebElement> dressesInCart = webDriver.findElements(By.xpath("//table//*[@class='product-name']"));
         assertThat(dressesInCart).isNotEmpty();
         return this;
     }
 
+    @Step("Завершить процесс оформления заказа")
     public CartPage completeToBuy () {
-
         proceedToCheckout.click();
         confirmAddress.click();
         checkboxAgreeShipping.click();
