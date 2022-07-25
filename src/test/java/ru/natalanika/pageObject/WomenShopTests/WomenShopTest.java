@@ -12,6 +12,8 @@ import ru.natalanika.pageObject.BaseTests;
 import ru.natalanika.pageObject.WomenShopTests.pages.ConstantPart;
 import ru.natalanika.pageObject.WomenShopTests.pages.MainPage;
 
+import java.util.Arrays;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DisplayName("Тестирование магазина женских платьев")
@@ -99,17 +101,16 @@ public class WomenShopTest extends BaseTests {
     @Severity(SeverityLevel.CRITICAL)
     @DisplayName("Выбор размера товара")
     @Test
-    public void selectSizeOfDress() {
-        String size = "M";
+    public void selectSizeOfDress() throws InterruptedException {
+        String size = "L";
         new MainPage(webDriver)
-                .getConstantPart()
-                .login(login, password)
                 .goToDresses()
                 .selectRandomDress()
                 .changeSize(size)
                 .addDressToCartAndGoToCart();
-        String sizeOnPage = webDriver.findElement(By.xpath("//div[@class='cart_last_product_content']//small//a")).getAttribute("innerHTML").split(" ")[5];
+        Thread.sleep(3000);
+        String [] sizeOnPage = webDriver.findElement(By.xpath("//div[@class='cart_last_product_content']//small//a")).getAttribute("innerText").split(" ");
 
-        assertThat(sizeOnPage).isEqualTo(size);
+      assertThat(sizeOnPage).contains(size);
     }
 }

@@ -19,7 +19,7 @@ public class OneDressPage extends BasePage {
     private WebElement addToCartButton;
     @FindBy (xpath = "//a[@title='Proceed to checkout']")
     private WebElement proceedToCheckoutButton;
-    @FindBy (xpath = " //select[@id='group_1']")
+    @FindBy (xpath = "//select[@id='group_1']")
     private WebElement selectSizeDropDown;
 
     @Step("Добавить товар в корзину и перейти в корзину")
